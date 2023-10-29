@@ -1,30 +1,29 @@
-const db = require("../../data/db-config");
+const db = require('../../data/db-config');
 
-const getAll = async() => {
-  return await db("cars")
-}
-
-const getById = async(id) => {
-  return await db("cars").where({id : id})
+const getAll = () => {
+  // DO YOUR MAGIC
+  return db('cars');
 }
 
-const create = async(newCar) => {
-  const createdCar = await db("cars").insert(newCar);
-  return await db("cars").where({id : createdCar[0]}).first();  
+const getById = id => {
+  // DO YOUR MAGIC
+  return db('cars').where('id', id).first();
 }
 
-const update = async(id,changes) => {
-  const updatedCar = await db("cars").update(changes).where({id : id}); //eslint-disable-line
-  return await db("cars").where({id : id});
+const getByVin = vin => {
+  return db('cars').where('vin', vin).first();
 }
-const remove = async(id) => {
-  const removed = await db("cars").del().where({id : id});
-  return removed; 
+
+const create = (car) => {
+  // DO YOUR MAGIC
+  return db('cars').insert(car)
+    .then(([id]) => getById(id));
 }
+
+
 module.exports = {
   getAll,
   getById,
-  create,
-  update,
-  remove
+  getByVin,
+  create
 }

@@ -1,15 +1,25 @@
 exports.up = function (knex) {
-  return knex.schema.createTable('cars', table => {
-    table.increments()
-    table.string('vin', 17).notNullable().unique();
-    table.string('make', 32).notNullable();
-    table.string('model', 32).notNullable();
-    table.integer('mileage').unsigned().notNullable();
-    table.string('title', 16).defaultTo('clean');
-    table.string('transmission', 16).defaultTo('automatic');
+  // DO YOUR MAGIC
+  return knex.schema.createTable('cars', tbl => {
+    tbl.increments()
+
+    tbl.string('vin', 17).notNullable().unique()
+
+    tbl.string('make', 123).notNullable()
+
+    tbl.string('model', 250).notNullable()
+
+    tbl.integer('mileage').unsigned().notNullable()
+
+    tbl.string('title', 123)
+
+    tbl.string('transmission', 123)
+
+
   })
 };
 
 exports.down = function (knex) {
-  return knex.schema.dropTableIfExists('cars');
+  // DO YOUR MAGIC
+  return knex.schema.dropTableIfExists('cars')
 };
